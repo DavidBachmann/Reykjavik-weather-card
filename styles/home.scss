@@ -1,0 +1,105 @@
+// Functions
+/* Calculate rem from px */
+@function rem($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
+$config: (
+
+);
+// Reset
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  font-size: 16px;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+// Application
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, #e88876, #f2d2bd);
+}
+.WeatherCard {
+  display: flex;
+  width: 650px;
+  height: 400px;
+  background: white;
+  color: #444;
+  text-transform: uppercase;
+  font-family: 'Heebo', sans-serif;
+  box-shadow: 0 2px 25px rgba(#000,0.3);
+  &-data {
+    flex: 0 1 58%;
+    padding: rem(55px);
+  }
+  &-img {
+    flex: 0 1 42%;
+    padding-top: rem(55px);
+    background-size: cover;
+    background-position: 50% 0%;
+    text-align: center;
+  }
+  &-name {
+    color: #FFF;
+    font-size: rem(24px);
+    letter-spacing: 2px;
+    font-weight: 300;
+  }
+  &-top {
+    margin-bottom: rem(40px);
+    font-size: rem(28px);
+    line-height: 1.333;
+    font-weight: 200;
+    letter-spacing: 1px;
+    color: #858585;
+  }
+  &-month {
+    margin-bottom: rem(32px);
+  }
+  &-caption {
+    margin-bottom: rem(12px);
+  }
+  &-temp {
+    margin-right: rem(16px);
+    font-size: rem(64px);
+    font-weight: 300;
+    color: #FFF;
+    font-family: 'Advent Pro';
+    &::after {
+      content: '°';
+      font-size: rem(40px);
+      vertical-align: 45%;
+    }
+  }
+  &-icon {
+    font-size: rem(54px);
+    color: #FFF;
+  }
+}
+
+.Forecast {
+  display: flex;
+  justify-content: space-around;
+  color: #8a8a8a;
+  .WeatherCard-icon {
+    font-size: 1rem;
+    color: inherit;
+  }
+  &-item {
+    font-size: .7rem;
+    font-weight: 100;
+    line-height: 3;
+    letter-spacing: 1px;
+  }
+}
