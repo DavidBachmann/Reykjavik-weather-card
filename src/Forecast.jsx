@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import data from './data.json';
 import getIcon from './helpers/getIcon.js';
 import moment from 'moment';
 
@@ -7,6 +6,7 @@ class Forecast extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      data: [],
       myItems: [
         moment(this.props.results[0].forecast[1].ftime).format("h:mm"),
         moment(this.props.results[0].forecast[2].ftime).format("h:mm"),
@@ -29,12 +29,30 @@ class Forecast extends Component {
             </li>
           );
         })}
-
-
       </ul>
     )
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Forecast.defaultProps = {
   "img": "https://images.unsplash.com/photo-1464545022782-925ec69295ef?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=7a79c38ed8e1cf7bcb4bf215948c979e",
   "coord": {

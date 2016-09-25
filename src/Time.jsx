@@ -22,15 +22,12 @@ class Time extends Component {
       <div className="WeatherCard-top">
         <p className="WeatherCard-day">{moment(this.props.results[0].atime).format("ddd Do")}</p>
         <p className="WeatherCard-month">{moment(this.props.results[0].atime).format("MMMM")}</p>
-        <p className="WeatherCard-time">
-          {this.state.time}
-        </p>
+        <p className="WeatherCard-time">{this.state.time}</p>
       </div>
     )
   }
 }
 Time.defaultProps = {
-  "img": "https://images.unsplash.com/photo-1464545022782-925ec69295ef?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=7a79c38ed8e1cf7bcb4bf215948c979e",
   "coord": {
     "lon": -21.9,
     "lat": 64.14
