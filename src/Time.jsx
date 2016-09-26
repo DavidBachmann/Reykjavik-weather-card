@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import moment from 'moment';
-import data from './data.json';
 
 class Time extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      time: moment().format('h:mm:ss a')
+      time: moment().format('h:mm:ss a'),
+      info: {}
     }
   }
   getTime() {
@@ -16,12 +16,28 @@ class Time extends Component {
   }
   componentDidMount() {
     setInterval(this.getTime.bind(this), 1000);
+
+    this.request = fetch('https://apis.is/weather/forecasts/is?stations=1')
+    .then((response) => {
+      return response.json()
+    }).then((json) => {
+      this.setState({
+        data: json,
+        info: {
+            day: moment(json.results[0].forecast[0].atime).format("ddd Do"),
+            month: moment(json.results[0].forecast[0].atime).format("MMMM")
+        }
+      })
+    })
+    .catch(function(ex) {
+      console.log('Request failed:', ex)
+    })
   }
   render() {
     return (
       <div className="WeatherCard-top">
-        <p className="WeatherCard-day">{moment(this.props.results[0].atime).format("ddd Do")}</p>
-        <p className="WeatherCard-month">{moment(this.props.results[0].atime).format("MMMM")}</p>
+        <p className="WeatherCard-day">{this.state.info.day}</p>
+        <p className="WeatherCard-month">{this.state.info.month}</p>
         <p className="WeatherCard-time">{this.state.time}</p>
       </div>
     )

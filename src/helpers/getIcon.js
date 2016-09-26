@@ -12,5 +12,7 @@ export default function getIcon(text) {
       return 'wi-rain';
     case 'Logn':
       return '';
+    case 'Heiðskírt':
+      return 'wi-day-sunny'
   }
 }

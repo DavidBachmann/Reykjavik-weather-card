@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import data from './data.json';
 import getIcon from './helpers/getIcon.js';
 
 class WeatherImg extends Component {
   constructor(props, state) {
     super(props, state);
     this.state = {
-      data: []
+      info: {}
     }
   }
   componentDidMount() {
@@ -15,8 +14,10 @@ class WeatherImg extends Component {
       return response.json()
     }).then((json) => {
       this.setState({
-        name: json.results[0].name,
-        data: json.results[0].forecast[0]
+        info: {
+          degrees: json.results[0].forecast[1].T,
+          icon: json.results[0].forecast[1].W
+        }
       })
     })
     .catch(function(ex) {
@@ -31,8 +32,8 @@ class WeatherImg extends Component {
     return (
       <div className="WeatherCard-img" style={style}>
           <p className="WeatherCard-caption">
-            <span className="WeatherCard-temp">{this.state.data.T}</span>
-            <i className={`WeatherCard-icon wi ${getIcon(this.state.data.W)}`}></i>
+            <span className="WeatherCard-temp">{this.state.info.degrees}</span>
+            <i className={`WeatherCard-icon wi ${getIcon(this.state.info.icon)}`}></i>
           </p>
         <p className="WeatherCard-name">{this.state.name}</p>
       </div>
