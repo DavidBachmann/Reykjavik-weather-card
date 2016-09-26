@@ -4,14 +4,15 @@ import moment from 'moment';
 class Time extends Component {
   constructor(props) {
     super(props);
+    moment.locale('is');
     this.state = {
-      time: moment().format('h:mm:ss a'),
+      time: moment().format('LTS'),
       info: {}
     }
   }
   getTime() {
     this.setState({
-      time: moment().format('h:mm:ss a')
+      time: moment().format('LTS')
     });
   }
   componentDidMount() {

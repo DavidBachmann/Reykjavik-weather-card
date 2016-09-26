@@ -5,6 +5,7 @@ import moment from 'moment';
 class Forecast extends Component {
   constructor(props) {
     super(props);
+    moment.locale('is');
     this.state = {
       data: [],
       info: []
@@ -15,42 +16,48 @@ class Forecast extends Component {
     .then((response) => {
       return response.json()
     }).then((json) => {
-      this.setState({
-        data: json,
-        info: [
-          {
-            date: moment(json.results[0].forecast[1].ftime).format("h:mm"),
-            degrees: json.results[0].forecast[1].T,
-            icon: json.results[0].forecast[1].W
-          },
-          {
-            date: moment(json.results[0].forecast[2].ftime).format("h:mm"),
-            degrees: json.results[0].forecast[2].T,
-            icon: json.results[0].forecast[2].W
-          },
-          {
-            date: moment(json.results[0].forecast[3].ftime).format("h:mm"),
-            degrees: json.results[0].forecast[3].T,
-            icon: json.results[0].forecast[3].W
-          },
-          {
-            date: moment(json.results[0].forecast[4].ftime).format("h:mm"),
-            degrees: json.results[0].forecast[4].T,
-            icon: json.results[0].forecast[4].W
-          },
-          {
-            date: moment(json.results[0].forecast[5].ftime).format("h:mm"),
-            degrees: json.results[0].forecast[5].T,
-            icon: json.results[0].forecast[5].W
-          },
-          {
-            date: moment(json.results[0].forecast[6].ftime).format("h:mm"),
-            degrees: json.results[0].forecast[6].T,
-            icon: json.results[0].forecast[6].W
-          }
+      for (var i = 0; i < json.results[0].forecast.length; i++) {
+        if(moment(json.results[0].forecast[i].ftime).format('LLLL').split(':')[0] === moment().format('LLLL').split(':')[0]) {
+          this.setState({
+            data: json,
+            info: [
+              {
+                date: moment(json.results[0].forecast[i].ftime).format("LT"),
+                degrees: json.results[0].forecast[i].T,
+                icon: json.results[0].forecast[i].W
+              },
+              {
+                date: moment(json.results[0].forecast[i+1].ftime).format("LT"),
+                degrees: json.results[0].forecast[i+1].T,
+                icon: json.results[0].forecast[i+1].W
+              },
+              {
+                date: moment(json.results[0].forecast[i+2].ftime).format("LT"),
+                degrees: json.results[0].forecast[i+2].T,
+                icon: json.results[0].forecast[i+2].W
+              },
+              {
+                date: moment(json.results[0].forecast[i+3].ftime).format("LT"),
+                degrees: json.results[0].forecast[i+3].T,
+                icon: json.results[0].forecast[i+3].W
+              },
+              {
+                date: moment(json.results[0].forecast[i+4].ftime).format("LT"),
+                degrees: json.results[0].forecast[i+4].T,
+                icon: json.results[0].forecast[i+4].W
+              },
+              {
+                date: moment(json.results[0].forecast[i+5].ftime).format("LT"),
+                degrees: json.results[0].forecast[i+5].T,
+                icon: json.results[0].forecast[i+5].W
+              }
 
-        ]
-      })
+            ]
+          })
+        }
+
+      }
+
     })
     .catch(function(ex) {
       console.log('Request failed:', ex)
