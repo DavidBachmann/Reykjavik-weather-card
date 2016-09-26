@@ -10,9 +10,19 @@ export default function getIcon(text) {
       return 'wi-rain';
     case 'Lítils háttar rigning':
       return 'wi-rain';
-    case 'Logn':
-      return '';
     case 'Heiðskírt':
       return 'wi-day-sunny'
+    case 'Lítils háttar slydda':
+      return 'wi-sleet'
+    case 'Snjóél':
+      return 'wi-rain-mix'
+    case 'Snjókoma':
+      return 'wi-snow'
+    case 'Lítils háttar snjókoma':
+      return 'wi-snow'
+    case 'Skúrir':
+      return 'wi-sprinkle'
+    case 'Logn':
+      return '';
   }
 }
