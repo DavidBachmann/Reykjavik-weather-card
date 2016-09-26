@@ -69,7 +69,7 @@ body {
     letter-spacing: 2px;
   }
   &-top {
-    margin-bottom: rem(40px);
+    margin-bottom: rem(32px);
     color: #858585;
     font-size: rem(28px);
     font-weight: 100;
@@ -85,14 +85,16 @@ body {
   &-temp {
     margin-right: rem(16px);
     color: #FFF;
-    font-family: 'Advent Pro';
     font-size: rem(64px);
-    font-weight: 300;
+    font-weight: 600;
     &::after {
       font-size: rem(40px);
       content: '°';
-      vertical-align: 45%;
+      vertical-align: 30%;
     }
+  }
+  &-time {
+    font-size: rem(40px);
   }
   &-icon {
     color: #FFF;

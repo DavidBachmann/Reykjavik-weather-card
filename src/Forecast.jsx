@@ -22,11 +22,6 @@ class Forecast extends Component {
             data: json,
             info: [
               {
-                date: moment(json.results[0].forecast[i].ftime).format("LT"),
-                degrees: json.results[0].forecast[i].T,
-                icon: json.results[0].forecast[i].W
-              },
-              {
                 date: moment(json.results[0].forecast[i+1].ftime).format("LT"),
                 degrees: json.results[0].forecast[i+1].T,
                 icon: json.results[0].forecast[i+1].W
@@ -50,6 +45,11 @@ class Forecast extends Component {
                 date: moment(json.results[0].forecast[i+5].ftime).format("LT"),
                 degrees: json.results[0].forecast[i+5].T,
                 icon: json.results[0].forecast[i+5].W
+              },
+              {
+                date: moment(json.results[0].forecast[i+6].ftime).format("LT"),
+                degrees: json.results[0].forecast[i+6].T,
+                icon: json.results[0].forecast[i+6].W
               }
 
             ]
