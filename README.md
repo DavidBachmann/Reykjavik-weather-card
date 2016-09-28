@@ -9,4 +9,4 @@ npm start
 open http://localhost:3000
 ```
 
-Thanks to [@vowles](dribbble.com/vowles)
+Thanks to [@vowles](https://dribbble.com/vowles)
