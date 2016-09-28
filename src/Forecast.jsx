@@ -3,44 +3,18 @@ import getIcon from './helpers/getIcon.js';
 import moment from 'moment';
 
 const Forecast = ({loading, data}) => {
-  let bla = [];
+  let arr = [];
 
   if (!loading) {
     for (var i = 0; i < data.results[0].forecast.length; i++) {
       if(moment(data.results[0].forecast[i].ftime).format('LLLL').split(':')[0] === moment().format('LLLL').split(':')[0]) {
-        bla = [
-          {
-            date: moment(data.results[0].forecast[i+1].ftime).format("LT"),
-            degrees: data.results[0].forecast[i+1].T,
-            icon: data.results[0].forecast[i+1].W
-          },
-          {
-            date: moment(data.results[0].forecast[i+2].ftime).format("LT"),
-            degrees: data.results[0].forecast[i+2].T,
-            icon: data.results[0].forecast[i+2].W
-          },
-          {
-            date: moment(data.results[0].forecast[i+3].ftime).format("LT"),
-            degrees: data.results[0].forecast[i+3].T,
-            icon: data.results[0].forecast[i+3].W
-          },
-          {
-            date: moment(data.results[0].forecast[i+4].ftime).format("LT"),
-            degrees: data.results[0].forecast[i+4].T,
-            icon: data.results[0].forecast[i+4].W
-          },
-          {
-            date: moment(data.results[0].forecast[i+5].ftime).format("LT"),
-            degrees: data.results[0].forecast[i+5].T,
-            icon: data.results[0].forecast[i+5].W
-          },
-          {
-            date: moment(data.results[0].forecast[i+6].ftime).format("LT"),
-            degrees: data.results[0].forecast[i+6].T,
-            icon: data.results[0].forecast[i+6].W
-          }
-
-        ]
+        for (var x = 0; x < 6; x++) {
+          arr.push({
+              date: moment(data.results[0].forecast[i+x].ftime).format("LT"),
+              degrees: data.results[0].forecast[i+x].T,
+              icon: data.results[0].forecast[i+x].W
+          })
+        }
       }
 
     }
@@ -49,12 +23,12 @@ const Forecast = ({loading, data}) => {
     return ( <div>
         { loading ? (<p>Loading</p>) : (
             <ul className="Forecast">
-              {bla.map((info, index) => {
+              {arr.map((item, index) => {
                 return (
                   <li className="Forecast-item" key={index}>
-                   <p>{info.date}</p>
-                    <p><i className={`WeatherCard-icon wi ${getIcon(info.icon)}`}></i></p>
-                    <p>{info.degrees}°</p>
+                   <p>{item.date}</p>
+                    <p><i className={`WeatherCard-icon wi ${getIcon(item.icon)}`}></i></p>
+                    <p>{item.degrees}°</p>
                   </li>
                 );
               })}
