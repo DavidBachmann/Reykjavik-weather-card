@@ -10,7 +10,7 @@ const Forecast = ({loading, data}) => {
       if(moment(data.results[0].forecast[i].ftime).format('LLLL').split(':')[0] === moment().format('LLLL').split(':')[0]) {
         for (var x = 0; x < 6; x++) {
           arr.push({
-              date: moment(data.results[0].forecast[i+x].ftime).format("LT"),
+              date: moment(data.results[0].forecast[i+x].ftime).format('LT'),
               degrees: data.results[0].forecast[i+x].T,
               icon: data.results[0].forecast[i+x].W
           })
@@ -20,20 +20,22 @@ const Forecast = ({loading, data}) => {
     }
   }
 
-    return ( <div>
-        { loading ? (<p>Loading</p>) : (
-            <ul className="Forecast">
-              {arr.map((item, index) => {
-                return (
-                  <li className="Forecast-item" key={index}>
-                   <p>{item.date}</p>
-                    <p><i className={`WeatherCard-icon wi ${getIcon(item.icon)}`}></i></p>
-                    <p>{item.degrees}°</p>
-                  </li>
-                );
-              })}
-            </ul> )}
-      </div> )
+  return (
+    <div> {
+        loading ? (<p>Loading</p>) : (
+          <ul className="Forecast">
+            {arr.map((item, index) => {
+              return (
+                <li className="Forecast-item" key={index}>
+                  <p>{item.date}</p>
+                  <p><i className={`WeatherCard-icon wi ${getIcon(item.icon)}`}></i></p>
+                  <p>{item.degrees}°</p>
+                </li>
+              );
+            })}
+          </ul> )}
+    </div>
+  )
 }
 
 export default Forecast;
