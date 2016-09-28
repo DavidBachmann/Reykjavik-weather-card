@@ -17,7 +17,7 @@ class App extends Component {
 
   componentDidMount(){
     setInterval(this.getTime.bind(this), 1000);
-    this.request = fetch('https://apis.is/weather/forecasts/is?stations=1')
+    this.request = fetch(this.props.api)
     .then((response) => {
       return response.json()
     }).then((json) => {
@@ -50,4 +50,7 @@ class App extends Component {
   }
 }
 
+App.defaultProps = {
+  api: 'https://apis.is/weather/forecasts/is?stations=1'
+}
 export default App;
